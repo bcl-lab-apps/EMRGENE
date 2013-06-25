@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{487C0351-DFBD-4FFA-AE98-4D7ED77F690F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HealthVault.Foundation</RootNamespace>
+    <AssemblyName>HealthVault.Foundation</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppInfo.cs" />
+    <Compile Include="ClientError.cs" />
+    <Compile Include="ClientException.cs" />
+    <Compile Include="ClientState.cs" />
+    <Compile Include="CrossThreadLock.cs" />
+    <Compile Include="CrossThreadLockScope.cs" />
+    <Compile Include="HResults.cs" />
+    <Compile Include="HttpStreamer.cs" />
+    <Compile Include="IHttpStreamer.cs" />
+    <Compile Include="Methods\BeginPutBlob.cs" />
+    <Compile Include="Methods\GetThings.cs" />
+    <Compile Include="Methods\GetThingType.cs" />
+    <Compile Include="Methods\GetVocabulary.cs" />
+    <Compile Include="Methods\PutThings.cs" />
+    <Compile Include="Methods\RemoveApplicationRecordAuthorization.cs" />
+    <Compile Include="Methods\RemoveThings.cs" />
+    <Compile Include="Methods\SearchVocabulary.cs" />
+    <Compile Include="OfflinePersonInfo.cs" />
+    <Compile Include="IWebAuthorizer.cs" />
+    <Compile Include="Methods\CreateAuthenticatedSessionToken.cs" />
+    <Compile Include="Methods\GetAuthorizedPeople.cs" />
+    <Compile Include="Methods\HealthVaultMethod.cs" />
+    <Compile Include="Methods\NewApplicationProvisioningInfo.cs" />
+    <Compile Include="NetworkExtensions.cs" />
+    <Compile Include="RecordMethods.cs" />
+    <Compile Include="SecretStore.cs" />
+    <Compile Include="ServerError.cs" />
+    <Compile Include="ServerException.cs" />
+    <Compile Include="ServerStatusCode.cs" />
+    <Compile Include="ServiceMethods.cs" />
+    <Compile Include="HealthVaultXmlReader.cs" />
+    <Compile Include="RecordReference.cs" />
+    <Compile Include="ResponseDeserializationContext.cs" />
+    <Compile Include="SerializationExtensions.cs" />
+    <Compile Include="ServerErrorContext.cs" />
+    <Compile Include="HttpTransport.cs" />
+    <Compile Include="IHttpTransport.cs" />
+    <Compile Include="ISerializer.cs" />
+    <Compile Include="Optional.cs" />
+    <Compile Include="ResponseStatus.cs" />
+    <Compile Include="ServiceInfo.cs" />
+    <Compile Include="RequestBody.cs" />
+    <Compile Include="RequestHeader.cs" />
+    <Compile Include="HealthVaultClient.cs" />
+    <Compile Include="ICryptographer.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="RequestXsl.cs" />
+    <Compile Include="Response.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Cryptographer.cs" />
+    <Compile Include="AuthSession.cs" />
+    <Compile Include="Serializer.cs" />
+    <Compile Include="IValidatable.cs" />
+    <Compile Include="SerializerFactory.cs" />
+    <Compile Include="RequestAuth.cs" />
+    <Compile Include="Shell.cs" />
+    <Compile Include="Store\CachingObjectStore.cs" />
+    <Compile Include="Store\EncryptedObjectStore.cs" />
+    <Compile Include="Store\FolderObjectStore.cs" />
+    <Compile Include="Store\ICache.cs" />
+    <Compile Include="Store\IObjectStore.cs" />
+    <Compile Include="Store\LRUCache.cs" />
+    <Compile Include="Store\PurgeableCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Types\BlobPutInfo.cs" />
+    <Compile Include="Types\Encrypted.cs" />
+    <Compile Include="Types\GetAuthorizedPeopleParams.cs" />
+    <Compile Include="Types\GetAuthorizedPeopleResponse.cs" />
+    <Compile Include="Types\Location.cs" />
+    <Compile Include="Types\PersonInfo.cs" />
+    <Compile Include="Types\Record.cs" />
+    <Compile Include="Types\RecordState.cs" />
+    <Compile Include="Types\SessionCredential.cs" />
+    <Compile Include="WebAuthorizer.cs" />
+    <Compile Include="StorageExtensions.cs" />
+    <Compile Include="Types\AppProvisioningInfo.cs" />
+    <Compile Include="Types\HmacContent.cs" />
+    <Compile Include="Types\CASTRequestParams.cs" />
+    <Compile Include="Types\CASTCredential.cs" />
+    <Compile Include="Types\Hash.cs" />
+    <Compile Include="Types\HashData.cs" />
+    <Compile Include="Types\Hmac.cs" />
+    <Compile Include="Types\HmacCredential.cs" />
+    <Compile Include="ValidationExtensions.cs" />
+    <Compile Include="HealthVaultXmlWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,42 @@
+﻿#health {
+	float: left;
+    position: relative;
+    width: 50%;
+	height: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+#genetics {
+	float: right;
+    position:relative;
+    width: 50%;
+	height: 100%;
+	margin:auto;
+	text-align: center;
+}
+
+#healthaccess{
+	text-align: center;
+	top: 50%;
+	margin: auto;
+	vertical-align: middle;
+}
+
+#geneticaccess{
+	text-align: center;
+	top: 50%;
+	margin:auto;
+	vertical-align: middle;
+}
+
+#contenthost {
+    position:relative;
+    float: left;
+    width: 100%;
+}s
+
+.fragment {
+	position: relative;
+    width: 100%;
+}

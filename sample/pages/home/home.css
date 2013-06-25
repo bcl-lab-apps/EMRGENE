@@ -1,0 +1,15 @@
+﻿.homepage section[role=main] {
+    margin-left: 0px;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .homepage section[role=main] {
+        margin-left: 0px;
+    }
+}
+
+@media screen and (-ms-view-state: portrait) {
+    .homepage section[role=main] {
+        margin-left: 0px;
+    }
+}
