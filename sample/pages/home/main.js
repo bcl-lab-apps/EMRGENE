@@ -2,7 +2,7 @@
 
 function displayText(text) {
     var output = document.getElementById("output");
-    output.textContent = text;
+    //output.textContent = text;
 }
 
 function displayError(error) {
@@ -27,10 +27,10 @@ function displayList(items, fullItem) {
     var div = document.getElementById("itemList");
 
     var table = renderItemList(items, fullItem);
-    if (div.firstChild != null) {
-        div.removeChild(div.firstChild);
-    }
-    div.appendChild(table);
+    //if (div.firstChild != null) {
+    //    div.removeChild(div.firstChild);
+    //}
+    //div.appendChild(table);
 }
 
 function renderItemList(itemList, fullItem) {
@@ -56,6 +56,31 @@ function renderItemList(itemList, fullItem) {
 
         var cell = row.insertCell();
         cell.innerText = item.reaction;
+        //DataHeaders.itemList.getItem(0).data.value = item.reaction;
+        //console.log(DataHeaders.itemList.getItem(0).data.name);
+        //var listView = document.getElementById("infoListView");
+        //DataHeaders.itemList.notifyMutated();
+
+        var typeA = item.type.name;
+
+        var unitA = item.reaction;
+
+        var dateA = item.firstObserved;
+
+        var valueA = item.name;
+
+        var objectA = { name: typeA.toString(), value: valueA.toString(), unit: unitA.toString(), date: dateA.toString() }
+        console.log(objectA);
+        console.log(typeA);
+        console.log(unitA);
+        console.log(dateA);
+        console.log(valueA);
+
+
+        DataHeaders.itemList.push(objectA);
+        //DataHeaders.itemList.push(objectA);
+
+
     }
 
     return table;
@@ -214,6 +239,10 @@ function startApp() {
         function () {
             displayUser();
             getAllergy();
+            //console.log(DataHeaders.itemList.getItem(0).data.name);
+            //console.log(DataHeaders.itemList.getItem(0).key);
+            //DataHeaders.itemList.getItem(0).data.info = "boo";
+
         },
         displayError,
         null);

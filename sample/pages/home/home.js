@@ -16,11 +16,12 @@
     "use strict";
 
     var dataArray = [
-    { "name": "Weight" },
-    { "name": "Blood Pressure" },
-    { "name": "Cholestrol" },
-    { "name": "Medication" },
-    { "name": "Condition"}
+    { name: "Weight", value: "", unit: "", info: "", date: "" },
+    { name: "Blood Pressure", value: "", unit: "", info: "", date: "" },
+    { name: "Cholestrol", value: "", unit: "", info: "", date: "" },
+    { name: "Medication", value: "", unit: "", info: "", date: "" },
+    { name: "Allergy", value: "", unit: "", info: "", date: "" },
+    { name: "Condition", value: "", unit: "", info: "", date: "" }
     ];
 
     var dataList = new WinJS.Binding.List(dataArray);
