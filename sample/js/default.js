@@ -21,20 +21,6 @@
                 // Restore application state here.
             }
 
-            var hvLogin = document.getElementById("healthaccess");
-            var hvContent = document.getElementById("contenthost");
-            hvContent.style.display = "none";
-            
-            hvLogin.addEventListener("click", function (event) {
-                if (isHVAuthenticated()) {
-                    console.log(isHVAuthenticated())
-                    document.getElementById("contenthost").style.display = "inline";
-                }
-                else {
-                    restartApp();
-                }
-            });
-
             if (app.sessionState.history) {
                 nav.history = app.sessionState.history;
             }

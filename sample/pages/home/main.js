@@ -46,17 +46,16 @@ function renderItemList(itemList, fullItem) {
         else {
             xml = item.serialize();
         }
-
         var row = table.insertRow();
 
         var typeCell = row.insertCell();
         typeCell.innerText = item.type.name;
-
+        
         var keyCell = row.insertCell();
         keyCell.innerText = item.key.id;
 
         var cell = row.insertCell();
-        cell.innerText = xml;
+        cell.innerText = item.reaction;
     }
 
     return table;
@@ -214,6 +213,7 @@ function startApp() {
     g_hvApp.startAsync().then(
         function () {
             displayUser();
+            getAllergy();
         },
         displayError,
         null);
@@ -918,6 +918,10 @@ function testQuery(query, fullItem) {
     //query.filters[0].updatedDateMin = new HealthVault.Types.DateTime("8/17/2012");
 
     displayText(query.serialize());
+    //var xml = query.serialize();
+    //var recordItem = HealthVault.Types.RecordItem.deserialize(xml);
+
+
 
     var record = getCurrentRecord();
 
@@ -928,6 +932,8 @@ function testQuery(query, fullItem) {
         displayError,
         null
     );
+
+
 }
 
 //
@@ -1290,4 +1296,29 @@ function testGetThingTypes() {
             }
             displayContent(text);
         });
+}
+
+//functions to get information upon startup
+function getAllergy() {
+    testQuery(HealthVault.ItemTypes.Allergy.queryFor());
+}
+
+function getWeight() {
+    testQuery(HealthVault.ItemTypes.Weight.queryFor());
+}
+
+function getBloodPressure() {
+    testQuery(HealthVault.ItemTypes.BloodPressure.queryFor());
+}
+
+function getCholestrol() {
+    testQuery(HealthVault.ItemTypes.Cholesterol.queryFor());
+}
+
+function getMedication() {
+    testQuery(HealthVault.ItemTypes.Medication.queryFor());
+}
+
+function getCondition() {
+    testQuery(HealthVault.ItemTypes.Condition.queryFor());
 }
