@@ -51,6 +51,14 @@ function renderItemList(itemList, fullItem) {
         renderAllergy(itemList);
     }
 
+    if (item.type.name.toString() == "Medication") {
+        renderMedication(itemList);
+    }
+
+    if (item.type.name.toString() == "Condition") {
+        renderCondition(itemList);
+    }
+
 
 
     //return table;
@@ -103,16 +111,6 @@ function renderBP(item) {
     LatestInfo.itemList.push(object);
 }
 
-function renderAllergy3(itemList) {
-    var item = itemList[0];
-
-    var itemReaction = item.reaction.toString();
-
-    var objectA = { reaction: itemReaction };
-
-    AllergyInfo.itemList.push(objectA);
-}
-
 function renderAllergy(itemList) {
 
     for (i = 0, count = itemList.length; i < count; ++i) {
@@ -124,22 +122,60 @@ function renderAllergy(itemList) {
         var itemReaction = "Reaction: " + item.reaction.toString();
 
         var itemDate = "First Observed: " + item.firstObserved.toString();
-
-        var itemTreatment = "";//item.treatment.toString();
-
-        var itemNegated = ""; //item.isNegated.toString();
-
-        var itemTreatmentInfo = "Treatment: " + itemTreatment;
-        var itemNegatedInfo = "Is Negated: " + itemNegated;
-
-        
-        var objectA = { name: itemName, reaction: itemReaction, date: itemDate, treatmentInfo: itemTreatmentInfo, negatedInfo: itemNegatedInfo };
+    
+        var objectA = { name: itemName, reaction: itemReaction, date: itemDate };
 
         AllergyInfo.itemList.push(objectA);
 
+    }
+}
+
+function renderMedication(itemList) {
+
+    for (i = 0, count = itemList.length; i < count; ++i) {
+
+        var item = itemList[i];
+
+        var itemName = "Medication: " + item.name.toString();
+
+        var itemStrength = "Strength: " + item.strength.toString();
+        console.log(item.serialize());
+
+        var itemDose = "Dose: " +item.dose.toString();
+
+        var itemFrequency = "Frequency: " + item.frequency.toString();
+
+        var objectA = { name: itemName, dose: itemDose, strength: itemStrength, frequency: itemFrequency};
+
+        MedicationInfo.itemList.push(objectA);
 
     }
 }
+
+function renderCondition(itemList) {
+    for (i = 0, count = itemList.length; i < count; ++i) {
+
+        var item = itemList[i];
+
+        var itemName = "Condition: " + item.name.toString();
+
+        var itemStatus = "Status: " + item.status.toString();
+
+        console.log(item.serialize());
+
+        var itemOnset = "On-set Date: " + item.onsetDate.toString();
+
+        var itemStopDate = "Stop Date: " + item.stopDate.toString();
+
+        var itemStopReason = "Stop Reason: " + item.stopReason.toString();
+
+        var objectA = { name: itemName, status: itemStatus, onset: itemOnset, stopDate: itemStopDate, stopReason: itemStopReason };
+
+        ConditionInfo.itemList.push(objectA);
+
+    }
+}
+
 
 function validateAndDisplayList(itemList, fullItem) {
 
@@ -298,8 +334,8 @@ function startApp() {
                 getAllergy();
                 getBloodPressure();
                 getCholestrol();
-                //getCondition();
-                //getMedication();
+                getCondition();
+                getMedication();
                 getWeight();
             };
             //console.log(DataHeaders.itemList.getItem(0).data.name);

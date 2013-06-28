@@ -33,8 +33,6 @@
                     <div style="height:20%">
                          <h6 data-win-bind="innerText: name"></h6>
                          <h6 data-win-bind="innerText: reaction"></h6>
-                         <h6 data-win-bind="innerText: treatmentInfo"></h6>
-                         <h6 data-win-bind="innerText: negatedInfo"></h6>
                          <h6 data-win-bind="innerText: date"></h6>
                     </div>
                </div>   
@@ -46,13 +44,13 @@
                 </div>
             
             <div class="heading">Medications</div>
+            ---
             <div id="medicationTemplate" data-win-control="WinJS.Binding.Template">
                     <div style="height:20%">
                          <h4 data-win-bind="innerText: name"></h4>
-                         <h6 data-win-bind="innerText: value"></h6>
-                         <h6 data-win-bind="innerText: unit"></h6>
-                         <h6 data-win-bind="innerText: info"></h6>
-                         <h6 data-win-bind="innerText: date"></h6>
+                         <h6 data-win-bind="innerText: dose"></h6>
+                         <h6 data-win-bind="innerText: strength"></h6>
+                         <h6 data-win-bind="innerText: frequency"></h6>
                     </div>
                </div>   
 
@@ -64,11 +62,11 @@
             ---
             <div id="conditionsTemplate" data-win-control="WinJS.Binding.Template">
                     <div style="height:20%">
-                         <h4 data-win-bind="innerText: name"></h4>
-                         <h6 data-win-bind="innerText: value"></h6>
-                         <h6 data-win-bind="innerText: unit"></h6>
-                         <h6 data-win-bind="innerText: info"></h6>
-                         <h6 data-win-bind="innerText: date"></h6>
+                         <h6 data-win-bind="innerText: name"></h6>
+                         <h6 data-win-bind="innerText: status"></h6>
+                         <h6 data-win-bind="innerText: onset"></h6>
+                         <h6 data-win-bind="innerText: stopDate"></h6>
+                         <h6 data-win-bind="innerText: stopReason"></h6>
                     </div>
                </div>   
 
