@@ -5,7 +5,7 @@
     <title>homePage</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
@@ -31,10 +31,10 @@
             ---
             <div id="allergytemplate" data-win-control="WinJS.Binding.Template">
                     <div style="height:20%">
-                         <h4 data-win-bind="innerText: name"></h4>
-                         <h6 data-win-bind="innerText: value"></h6>
-                         <h6 data-win-bind="innerText: unit"></h6>
-                         <h6 data-win-bind="innerText: info"></h6>
+                         <h6 data-win-bind="innerText: name"></h6>
+                         <h6 data-win-bind="innerText: reaction"></h6>
+                         <h6 data-win-bind="innerText: treatmentInfo"></h6>
+                         <h6 data-win-bind="innerText: negatedInfo"></h6>
                          <h6 data-win-bind="innerText: date"></h6>
                     </div>
                </div>   
@@ -99,23 +99,11 @@
         </div>
         
         <div id="right" class="column">
-            <div class="heading">Family History</div>
+            <div class="heading">23AndMe</div>
                 ---
-                <div id="fhTemplate" data-win-control="WinJS.Binding.Template">
-                    <div style="height:300px">
-                         <h4 data-win-bind="innerText: name"></h4>
-                         <h6 data-win-bind="innerText: value"></h6>
-                         <h6 data-win-bind="innerText: unit"></h6>
-                         <h6 data-win-bind="innerText: info"></h6>
-                         <h6 data-win-bind="innerText: date"></h6>
-                    </div>
-               </div>   
+            <div class="heading">Telcare</div>
+                ---
 
-                <div id="fhListView"
-                    data-win-control="WinJS.UI.ListView"
-                    data-win-options="{ itemDataSource : FHInfo.itemList.dataSource, itemTemplate: select('#fhTemplate'), layout: {type: WinJS.UI.ListLayout} }">
-
-                </div>
         </div>
     </div>
     <div id="footer"></div>

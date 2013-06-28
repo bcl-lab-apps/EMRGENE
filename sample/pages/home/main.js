@@ -42,43 +42,16 @@ function renderItemList(itemList, fullItem) {
     if (item.type.name.toString() == "Cholesterol Measurement") {
         renderCholestrol(item);
     }
-    
 
-    for (i = 0, count = itemList.length; i < count; ++i) {
-
-        var item = itemList[i];
-        var xml;
-        if (fullItem) {
-            xml = item.item.serialize();
-        }
-        else {
-            xml = item.serialize();
-        }
-
-        //cell.innerText = item.reaction;
-        //DataHeaders.itemList.getItem(0).data.value = item.reaction;
-        //console.log(DataHeaders.itemList.getItem(0).data.name);
-        //var listView = document.getElementById("infoListView");
-        //DataHeaders.itemList.notifyMutated();
-
-       // var typeA = item.type.name;
-
-       // var unitA = item.reaction;
-
-       // var dateA = item.firstObserved;
-
-        //var valueA = item.toString();
-
-        //var objectA = { name: typeA.toString(), value: valueA.toString(), unit: unitA.toString(), date: dateA.toString() }
-        //console.log(AllergyInfo.itemList);
-
-        //console.log(AllergyInfo.itemList.dataSource);
-
-        //AllergyInfo.itemList.push(objectA);
-        //DataHeaders.itemList.push(objectA);
-
-
+    if (item.type.name.toString() == "Blood Pressure Measurement") {
+        renderBP(item);
     }
+
+    if (item.type.name.toString() == "Allergy") {
+        renderAllergy(itemList);
+    }
+
+
 
     //return table;
 }
@@ -107,11 +80,65 @@ function renderCholestrol(item) {
     var itemInfo2 = "HDL: " + hdl + " " + units;
     var itemInfo3 = "Triglyceride: " + triglyceride + " " + units;
     var itemInfo4 = "Total Cholestrol: " + total + units;
-    console.log(itemInfo4);
-    console.log(itemInfo3);
     var object = { name: chol, date: when, info1: itemInfo, info2: itemInfo2, info3: itemInfo3, info4: itemInfo4 };
-    console.log(object);
     LatestInfo.itemList.push(object);
+}
+
+function renderBP(item) {
+    var bp = item.type.name.toString();
+    var systolic = item.systolic.toString();
+    var diastolic = item.diastolic.toString();
+    var when = item.when.toString();
+    var pulse = item.pulse.toString();
+    var unit = " mmHg";
+    var pulseunit = " beats per minute";
+    var irregularHB = item.irregularHeartbeat.toString();
+
+    var itemInfo = "Systolic: " + systolic + unit;
+    var itemInfo2 = "Diastolic: " + diastolic + unit;
+    var itemInfo3 = "Pulse: " + pulse + pulseunit;
+    var itemInfo4 = "Irregular Heartbeat: " + irregularHB;
+
+    var object = { name: bp, date: when, info1: itemInfo, info2: itemInfo2, info3: itemInfo3, info4: itemInfo4 };
+    LatestInfo.itemList.push(object);
+}
+
+function renderAllergy3(itemList) {
+    var item = itemList[0];
+
+    var itemReaction = item.reaction.toString();
+
+    var objectA = { reaction: itemReaction };
+
+    AllergyInfo.itemList.push(objectA);
+}
+
+function renderAllergy(itemList) {
+
+    for (i = 0, count = itemList.length; i < count; ++i) {
+
+        var item = itemList[i];
+
+        var itemName = "Allergy: "+ item.name.toString();
+        
+        var itemReaction = "Reaction: " + item.reaction.toString();
+
+        var itemDate = "First Observed: " + item.firstObserved.toString();
+
+        var itemTreatment = "";//item.treatment.toString();
+
+        var itemNegated = ""; //item.isNegated.toString();
+
+        var itemTreatmentInfo = "Treatment: " + itemTreatment;
+        var itemNegatedInfo = "Is Negated: " + itemNegated;
+
+        
+        var objectA = { name: itemName, reaction: itemReaction, date: itemDate, treatmentInfo: itemTreatmentInfo, negatedInfo: itemNegatedInfo };
+
+        AllergyInfo.itemList.push(objectA);
+
+
+    }
 }
 
 function validateAndDisplayList(itemList, fullItem) {
@@ -268,8 +295,8 @@ function startApp() {
             //displayUser();
 
             if (g_hvApp.isAuthorizedOnServerAsync()) {
-                //getAllergy();
-                //getBloodPressure();
+                getAllergy();
+                getBloodPressure();
                 getCholestrol();
                 //getCondition();
                 //getMedication();
