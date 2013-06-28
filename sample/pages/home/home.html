@@ -20,16 +20,17 @@
 </head>
 <body>
     <!-- The content that will be loaded and displayed. -->
-        <header aria-label="Header content" height="100%" role="banner">
+        <header aria-label="Header content" role="banner">
                 <h2 class="titlearea win-type-ellipsis">
-                    <span id="recordImageCont"></span><span class="pagetitle">HealthVault</span>
+                    <span id="recordImageCont"></span><span class="pagetitle">DB EMR</span>
                 </h2>
         </header>
     <div id="container">
         <div id="middle" class="column">
-            <h6>Allergy</h6>
+            <div class="heading">Allergy</div>
+            ---
             <div id="allergytemplate" data-win-control="WinJS.Binding.Template">
-                    <div style="height:300px">
+                    <div style="height:20%">
                          <h4 data-win-bind="innerText: name"></h4>
                          <h6 data-win-bind="innerText: value"></h6>
                          <h6 data-win-bind="innerText: unit"></h6>
@@ -43,10 +44,42 @@
                     data-win-options="{ itemDataSource : AllergyInfo.itemList.dataSource, itemTemplate: select('#allergytemplate'), layout: {type: WinJS.UI.ListLayout} }">
 
                 </div>
+            
+            <div class="heading">Medications</div>
+            <div id="medicationTemplate" data-win-control="WinJS.Binding.Template">
+                    <div style="height:20%">
+                         <h4 data-win-bind="innerText: name"></h4>
+                         <h6 data-win-bind="innerText: value"></h6>
+                         <h6 data-win-bind="innerText: unit"></h6>
+                         <h6 data-win-bind="innerText: info"></h6>
+                         <h6 data-win-bind="innerText: date"></h6>
+                    </div>
+               </div>   
 
-        </div>
+                <div id="medicationListView"
+                    data-win-control="WinJS.UI.ListView"
+                    data-win-options="{ itemDataSource : MedicationInfo.itemList.dataSource, itemTemplate: select('#medicationTemplate'), layout: {type: WinJS.UI.ListLayout} }">
+                </div>
+            <div class="heading">Conditions</div>
+            ---
+            <div id="conditionsTemplate" data-win-control="WinJS.Binding.Template">
+                    <div style="height:20%">
+                         <h4 data-win-bind="innerText: name"></h4>
+                         <h6 data-win-bind="innerText: value"></h6>
+                         <h6 data-win-bind="innerText: unit"></h6>
+                         <h6 data-win-bind="innerText: info"></h6>
+                         <h6 data-win-bind="innerText: date"></h6>
+                    </div>
+               </div>   
+
+                <div id="conditionListView"
+                    data-win-control="WinJS.UI.ListView"
+                    data-win-options="{ itemDataSource : ConditionInfo.itemList.dataSource, itemTemplate: select('#conditionsTemplate'), layout: {type: WinJS.UI.ListLayout} }">
+                </div>
+            </div>
         <div id="left" class="column">
-                <h6>Latest Measurements</h6>
+                <div class="heading">Latest Measurements</div>
+                ---
                 <div id="template" data-win-control="WinJS.Binding.Template">
                     <div style="height:300px">
                          <h4 data-win-bind="innerText: name"></h4>
@@ -65,7 +98,23 @@
         </div>
         
         <div id="right" class="column">
+            <div class="heading">Family History</div>
+                ---
+                <div id="fhTemplate" data-win-control="WinJS.Binding.Template">
+                    <div style="height:300px">
+                         <h4 data-win-bind="innerText: name"></h4>
+                         <h6 data-win-bind="innerText: value"></h6>
+                         <h6 data-win-bind="innerText: unit"></h6>
+                         <h6 data-win-bind="innerText: info"></h6>
+                         <h6 data-win-bind="innerText: date"></h6>
+                    </div>
+               </div>   
 
+                <div id="fhListView"
+                    data-win-control="WinJS.UI.ListView"
+                    data-win-options="{ itemDataSource : FHInfo.itemList.dataSource, itemTemplate: select('#fhTemplate'), layout: {type: WinJS.UI.ListLayout} }">
+
+                </div>
         </div>
     </div>
     <div id="footer"></div>

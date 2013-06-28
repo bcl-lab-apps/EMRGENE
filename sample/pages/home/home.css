@@ -43,3 +43,15 @@
 #footer {
     clear: both;
 }
+
+#allergyListView {
+    height: 200px;
+}
+
+#medicationListView {
+    height:200px;
+}
+
+#conditionsListView {
+    height:200px;
+}
