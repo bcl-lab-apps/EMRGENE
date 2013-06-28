@@ -20,13 +20,56 @@
 </head>
 <body>
     <!-- The content that will be loaded and displayed. -->
-
-    <div class="fragment homepage">
         <header aria-label="Header content" height="100%" role="banner">
-            <h2 class="titlearea win-type-ellipsis">
-                <span id="recordImageCont"></span><span class="pagetitle">HealthVault</span>
-            </h2>
+                <h2 class="titlearea win-type-ellipsis">
+                    <span id="recordImageCont"></span><span class="pagetitle">HealthVault</span>
+                </h2>
         </header>
+    <div id="container">
+        <div id="middle" class="column">
+            <h6>Allergy</h6>
+            <div id="allergytemplate" data-win-control="WinJS.Binding.Template">
+                    <div style="height:300px">
+                         <h4 data-win-bind="innerText: name"></h4>
+                         <h6 data-win-bind="innerText: value"></h6>
+                         <h6 data-win-bind="innerText: unit"></h6>
+                         <h6 data-win-bind="innerText: info"></h6>
+                         <h6 data-win-bind="innerText: date"></h6>
+                    </div>
+               </div>   
+
+                <div id="allergyListView"
+                    data-win-control="WinJS.UI.ListView"
+                    data-win-options="{ itemDataSource : AllergyInfo.itemList.dataSource, itemTemplate: select('#allergytemplate'), layout: {type: WinJS.UI.ListLayout} }">
+
+                </div>
+
+        </div>
+        <div id="left" class="column">
+                <h6>Latest Measurements</h6>
+                <div id="template" data-win-control="WinJS.Binding.Template">
+                    <div style="height:300px">
+                         <h4 data-win-bind="innerText: name"></h4>
+                         <h6 data-win-bind="innerText: value"></h6>
+                         <h6 data-win-bind="innerText: unit"></h6>
+                         <h6 data-win-bind="innerText: info"></h6>
+                         <h6 data-win-bind="innerText: date"></h6>
+                    </div>
+               </div>   
+
+                <div id="infoListView"
+                    data-win-control="WinJS.UI.ListView"
+                    data-win-options="{ itemDataSource : LatestInfo.itemList.dataSource, itemTemplate: select('#template'), layout: {type: WinJS.UI.ListLayout} }">
+
+                </div>
+        </div>
+        
+        <div id="right" class="column">
+
+        </div>
+    </div>
+    <div id="footer"></div>
+    <div class="fragment homepage">
         <section aria-label="Main content" role="main" width="100%" margin="auto">
             <div style="width:100%">
                 <button onclick="startApp();">Start</button>
@@ -37,22 +80,7 @@
                 <button onclick="removeAppRecordAuthOnServer();">RemoveAppRecordAuthOnServer</button>
              </div>
             <div>------</div>
-
-            <div id="template" data-win-control="WinJS.Binding.Template" style="height:300px">
-                <div style="height:300px">
-                     <h4 data-win-bind="innerText: name"></h4>
-                     <h6 data-win-bind="innerText: value"></h6>
-                     <h6 data-win-bind="innerText: unit"></h6>
-                     <h6 data-win-bind="innerText: info"></h6>
-                     <h6 data-win-bind="innerText: date"></h6>
-                </div>
-           </div>   
-
-            <div id="infoListView"
-                data-win-control="WinJS.UI.ListView"
-                data-win-options="{ itemDataSource : DataHeaders.itemList.dataSource, itemTemplate: select('#template'), layout: {type: WinJS.UI.ListLayout} }">
-
-            </div>
+            
         </section>
     </div>
 </body>

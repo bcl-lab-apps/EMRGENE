@@ -15,16 +15,22 @@
 (function () {
     "use strict";
 
-    var dataArray = [
-    { name: "Weight", value: "", unit: "", info: "", date: "" },
-    { name: "Blood Pressure", value: "", unit: "", info: "", date: "" },
+    var allergyArray = [];
+    var medication = [];
+    var condition = [];
+    var familyHistory = [];
+
+     var latestInfo =[ { name: "Weight", value: "", unit: "", info: "", date: "" },
+   { name: "Blood Pressure", value: "", unit: "", info: "", date: "" },
     { name: "Cholestrol", value: "", unit: "", info: "", date: "" },
     { name: "Medication", value: "", unit: "", info: "", date: "" },
     { name: "Allergy", value: "", unit: "", info: "", date: "" },
-    { name: "Condition", value: "", unit: "", info: "", date: "" }
-    ];
+    { name: "Condition", value: "", unit: "", info: "", date: "" }]
 
-    var dataList = new WinJS.Binding.List(dataArray);
+     //latestInfo = [];
+
+    //Lastest Information such as BP and Cholestrol
+    var dataList = new WinJS.Binding.List(latestInfo);
 
     // Create a namespace to make the data publicly
     // accessible. 
@@ -32,7 +38,44 @@
         {
             itemList: dataList
         };
-    WinJS.Namespace.define("DataHeaders", publicMembers);
+    WinJS.Namespace.define("LatestInfo", publicMembers);
+
+    //Allergy
+    var allergyList = new WinJS.Binding.List(allergyArray);
+
+    var allergyPM =
+        {
+            itemList: allergyList
+        };
+    WinJS.Namespace.define("AllergyInfo", allergyPM);
+    //Medication
+    var medList = new WinJS.Binding.List(medication);
+
+    var medicationPM =
+        {
+            itemList: medList
+        };
+    WinJS.Namespace.define("MedicationInfo", medicationPM);
+    //Conditions
+
+    var conditionList = new WinJS.Binding.List(condition);
+
+    var conditionPM =
+        {
+            itemList: conditionList
+        };
+
+    WinJS.Namespace.define("ConditionInfo", conditionPM);
+
+    //Family History
+    var fhList = new WinJS.Binding.List(familyHistory);
+
+    var fhPM =
+        {
+            itemList: fhList
+        };
+
+    WinJS.Namespace.define("FHInfo", fhPM);
 
 })();
 

@@ -70,14 +70,11 @@ function renderItemList(itemList, fullItem) {
         var valueA = item.name;
 
         var objectA = { name: typeA.toString(), value: valueA.toString(), unit: unitA.toString(), date: dateA.toString() }
-        console.log(objectA);
-        console.log(typeA);
-        console.log(unitA);
-        console.log(dateA);
-        console.log(valueA);
+        //console.log(AllergyInfo.itemList);
 
+        //console.log(AllergyInfo.itemList.dataSource);
 
-        DataHeaders.itemList.push(objectA);
+        AllergyInfo.itemList.push(objectA);
         //DataHeaders.itemList.push(objectA);
 
 
@@ -237,8 +234,11 @@ function getCurrentRecordStore() {
 function startApp() {
     g_hvApp.startAsync().then(
         function () {
-            displayUser();
-            getAllergy();
+            //displayUser();
+
+            if (g_hvApp.isAuthorizedOnServerAsync()) {
+                getAllergy();
+            };
             //console.log(DataHeaders.itemList.getItem(0).data.name);
             //console.log(DataHeaders.itemList.getItem(0).key);
             //DataHeaders.itemList.getItem(0).data.info = "boo";
