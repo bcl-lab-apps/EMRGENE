@@ -23,18 +23,26 @@ function displayContent(text) {
 // Simple tabular display
 //
 //---------------
-function displayList(items, fullItem) {
-    var div = document.getElementById("itemList");
 
-    var table = renderItemList(items, fullItem);
-    //if (div.firstChild != null) {
-    //    div.removeChild(div.firstChild);
-    //}
-    //div.appendChild(table);
+function displayList(items, fullItem) {
+    renderItemList(items, fullItem);
+
 }
 
+//bad construction, needs better design/modular design
+//would be better to pass in function callback with the appropriate renders, this is to save time temporarily
 function renderItemList(itemList, fullItem) {
-    var table = document.createElement("table");
+
+    var item = itemList[0]; //0 is the latest record
+
+    if (item.type.name.toString() == "Weight Measurement") {
+        renderWeight(item);
+    }
+
+    if (item.type.name.toString() == "Cholesterol Measurement") {
+        renderCholestrol(item);
+    }
+    
 
     for (i = 0, count = itemList.length; i < count; ++i) {
 
@@ -46,41 +54,64 @@ function renderItemList(itemList, fullItem) {
         else {
             xml = item.serialize();
         }
-        var row = table.insertRow();
 
-        var typeCell = row.insertCell();
-        typeCell.innerText = item.type.name;
-        
-        var keyCell = row.insertCell();
-        keyCell.innerText = item.key.id;
-
-        var cell = row.insertCell();
-        cell.innerText = item.reaction;
+        //cell.innerText = item.reaction;
         //DataHeaders.itemList.getItem(0).data.value = item.reaction;
         //console.log(DataHeaders.itemList.getItem(0).data.name);
         //var listView = document.getElementById("infoListView");
         //DataHeaders.itemList.notifyMutated();
 
-        var typeA = item.type.name;
+       // var typeA = item.type.name;
 
-        var unitA = item.reaction;
+       // var unitA = item.reaction;
 
-        var dateA = item.firstObserved;
+       // var dateA = item.firstObserved;
 
-        var valueA = item.name;
+        //var valueA = item.toString();
 
-        var objectA = { name: typeA.toString(), value: valueA.toString(), unit: unitA.toString(), date: dateA.toString() }
+        //var objectA = { name: typeA.toString(), value: valueA.toString(), unit: unitA.toString(), date: dateA.toString() }
         //console.log(AllergyInfo.itemList);
 
         //console.log(AllergyInfo.itemList.dataSource);
 
-        AllergyInfo.itemList.push(objectA);
+        //AllergyInfo.itemList.push(objectA);
         //DataHeaders.itemList.push(objectA);
 
 
     }
 
-    return table;
+    //return table;
+}
+
+function renderWeight(item) {
+    var itemName = item.type.name.toString();
+    var itemValue = item.value.value.toString();
+    var itemDate = item.when.toString();
+    var itemUnit = "kg";
+    var itemInfo = parseFloat(itemValue).toFixed(2).toString() + " " + itemUnit;
+    var object = { name: itemName, date: itemDate, info1: itemInfo, info2: "", info3: "", info4: ""};
+    LatestInfo.itemList.push(object);
+}
+
+
+function renderCholestrol(item) {
+    var chol = item.type.name.toString();
+    var ldl = item.ldl.toString();
+    var hdl = item.hdl.toString();
+    var units = "mmol/L";
+    var triglyceride = item.triglycerides.toString();
+    var when = item.when.toString();
+    var total = item.total.toString();
+
+    var itemInfo = "LDL: " + ldl + " " + units;
+    var itemInfo2 = "HDL: " + hdl + " " + units;
+    var itemInfo3 = "Triglyceride: " + triglyceride + " " + units;
+    var itemInfo4 = "Total Cholestrol: " + total + units;
+    console.log(itemInfo4);
+    console.log(itemInfo3);
+    var object = { name: chol, date: when, info1: itemInfo, info2: itemInfo2, info3: itemInfo3, info4: itemInfo4 };
+    console.log(object);
+    LatestInfo.itemList.push(object);
 }
 
 function validateAndDisplayList(itemList, fullItem) {
@@ -237,7 +268,12 @@ function startApp() {
             //displayUser();
 
             if (g_hvApp.isAuthorizedOnServerAsync()) {
-                getAllergy();
+                //getAllergy();
+                //getBloodPressure();
+                getCholestrol();
+                //getCondition();
+                //getMedication();
+                getWeight();
             };
             //console.log(DataHeaders.itemList.getItem(0).data.name);
             //console.log(DataHeaders.itemList.getItem(0).key);

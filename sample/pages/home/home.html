@@ -81,11 +81,12 @@
                 <div class="heading">Latest Measurements</div>
                 ---
                 <div id="template" data-win-control="WinJS.Binding.Template">
-                    <div style="height:300px">
+                    <div style="height:150px">
                          <h4 data-win-bind="innerText: name"></h4>
-                         <h6 data-win-bind="innerText: value"></h6>
-                         <h6 data-win-bind="innerText: unit"></h6>
-                         <h6 data-win-bind="innerText: info"></h6>
+                         <h6 data-win-bind="innerText: info1"></h6>
+                         <h6 data-win-bind="innerText: info2"></h6>
+                         <h6 data-win-bind="innerText: info3"></h6>
+                         <h6 data-win-bind="innerText: info4"></h6>
                          <h6 data-win-bind="innerText: date"></h6>
                     </div>
                </div>   
@@ -119,7 +120,7 @@
     </div>
     <div id="footer"></div>
     <div class="fragment homepage">
-        <section aria-label="Main content" role="main" width="100%" margin="auto">
+        <section aria-label="Main content" role="main" height="100%" width="100%" margin="auto">
             <div style="width:100%">
                 <button onclick="startApp();">Start</button>
                 <button onclick="restartApp();">Restart</button>

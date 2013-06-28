@@ -20,14 +20,7 @@
     var condition = [];
     var familyHistory = [];
 
-     var latestInfo =[ { name: "Weight", value: "", unit: "", info: "", date: "" },
-   { name: "Blood Pressure", value: "", unit: "", info: "", date: "" },
-    { name: "Cholestrol", value: "", unit: "", info: "", date: "" },
-    { name: "Medication", value: "", unit: "", info: "", date: "" },
-    { name: "Allergy", value: "", unit: "", info: "", date: "" },
-    { name: "Condition", value: "", unit: "", info: "", date: "" }]
-
-     //latestInfo = [];
+     var latestInfo = [];
 
     //Lastest Information such as BP and Cholestrol
     var dataList = new WinJS.Binding.List(latestInfo);
