@@ -31,7 +31,7 @@
             ---
             <div id="allergytemplate" data-win-control="WinJS.Binding.Template">
                     <div style="height:20%">
-                         <h6 data-win-bind="innerText: name"></h6>
+                         <h4 data-win-bind="innerText: name"></h4>
                          <h6 data-win-bind="innerText: reaction"></h6>
                          <h6 data-win-bind="innerText: date"></h6>
                     </div>
@@ -76,6 +76,9 @@
                 </div>
             </div>
         <div id="left" class="column">
+                <div class="heading">Name</div>
+                <div class="heading" id="username"></div>
+                <br />
                 <div class="heading">Latest Measurements</div>
                 ---
                 <div id="template" data-win-control="WinJS.Binding.Template">

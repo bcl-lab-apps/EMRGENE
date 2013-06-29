@@ -33,7 +33,22 @@ function displayList(items, fullItem) {
 //would be better to pass in function callback with the appropriate renders, this is to save time temporarily
 function renderItemList(itemList, fullItem) {
 
+    //empty item list
+    if (itemList.length == 0) {
+        return null;
+    }
+
     var item = itemList[0]; //0 is the latest record
+
+    //no item type
+    if (!item.type) {
+        return null;
+    }
+
+    //no item type name
+    if (!item.type.name) {
+        return null;
+    }
 
     if (item.type.name.toString() == "Weight Measurement") {
         renderWeight(item);
@@ -64,25 +79,36 @@ function renderItemList(itemList, fullItem) {
     //return table;
 }
 
+//create a stringify method instead of using just toString because it needs to catch nulls
+function stringify(thing) {
+    if (thing) {
+        return thing.toString();
+    }
+
+    else {
+        return ""
+    }
+}
+
 function renderWeight(item) {
-    var itemName = item.type.name.toString();
-    var itemValue = item.value.value.toString();
-    var itemDate = item.when.toString();
+    var itemName = stringify(item.type.name);
+    var itemValue = stringify(item.value.value);
+    var itemDate = stringify(item.when);
     var itemUnit = "kg";
-    var itemInfo = parseFloat(itemValue).toFixed(2).toString() + " " + itemUnit;
+    var itemInfo = itemValue + " " + itemUnit;
     var object = { name: itemName, date: itemDate, info1: itemInfo, info2: "", info3: "", info4: ""};
     LatestInfo.itemList.push(object);
 }
 
 
 function renderCholestrol(item) {
-    var chol = item.type.name.toString();
-    var ldl = item.ldl.toString();
-    var hdl = item.hdl.toString();
+    var chol = stringify(item.type.name);
+    var ldl = stringify(item.ldl);
+    var hdl = stringify(item.hdl);
     var units = "mmol/L";
-    var triglyceride = item.triglycerides.toString();
-    var when = item.when.toString();
-    var total = item.total.toString();
+    var triglyceride = stringify(item.triglycerides);
+    var when = stringify(item.when);
+    var total = stringify(item.total);
 
     var itemInfo = "LDL: " + ldl + " " + units;
     var itemInfo2 = "HDL: " + hdl + " " + units;
@@ -93,14 +119,14 @@ function renderCholestrol(item) {
 }
 
 function renderBP(item) {
-    var bp = item.type.name.toString();
-    var systolic = item.systolic.toString();
-    var diastolic = item.diastolic.toString();
-    var when = item.when.toString();
-    var pulse = item.pulse.toString();
+    var bp = stringify(item.type.name);
+    var systolic = stringify(item.systolic);
+    var diastolic = stringify(item.diastolic);
+    var when = stringify(item.when);
+    var pulse = stringify(item.pulse);
     var unit = " mmHg";
     var pulseunit = " beats per minute";
-    var irregularHB = item.irregularHeartbeat.toString();
+    var irregularHB = stringify(item.irregularHeartbeat);
 
     var itemInfo = "Systolic: " + systolic + unit;
     var itemInfo2 = "Diastolic: " + diastolic + unit;
@@ -117,11 +143,11 @@ function renderAllergy(itemList) {
 
         var item = itemList[i];
 
-        var itemName = "Allergy: "+ item.name.toString();
+        var itemName = "Allergy: "+ stringify(item.name);
         
-        var itemReaction = "Reaction: " + item.reaction.toString();
+        var itemReaction = "Reaction: " + stringify(item.reaction);
 
-        var itemDate = "First Observed: " + item.firstObserved.toString();
+        var itemDate = "First Observed: " + stringify(item.firstObserved);
     
         var objectA = { name: itemName, reaction: itemReaction, date: itemDate };
 
@@ -136,14 +162,13 @@ function renderMedication(itemList) {
 
         var item = itemList[i];
 
-        var itemName = "Medication: " + item.name.toString();
+        var itemName = "Medication: " + stringify(item.name);
 
-        var itemStrength = "Strength: " + item.strength.toString();
-        console.log(item.serialize());
+        var itemStrength = "Strength: " + stringify(item.strength);
 
-        var itemDose = "Dose: " +item.dose.toString();
+        var itemDose = "Dose: " + stringify(item.dose);
 
-        var itemFrequency = "Frequency: " + item.frequency.toString();
+        var itemFrequency = "Frequency: " + stringify(item.frequency);
 
         var objectA = { name: itemName, dose: itemDose, strength: itemStrength, frequency: itemFrequency};
 
@@ -157,17 +182,15 @@ function renderCondition(itemList) {
 
         var item = itemList[i];
 
-        var itemName = "Condition: " + item.name.toString();
+        var itemName = "Condition: " + stringify(item.name);
 
-        var itemStatus = "Status: " + item.status.toString();
+        var itemStatus = "Status: " + stringify(item.status);
 
-        console.log(item.serialize());
+        var itemOnset = "On-set Date: " + stringify(item.onsetDate);
 
-        var itemOnset = "On-set Date: " + item.onsetDate.toString();
+        var itemStopDate = "Stop Date: " + stringify(item.stopDate);
 
-        var itemStopDate = "Stop Date: " + item.stopDate.toString();
-
-        var itemStopReason = "Stop Reason: " + item.stopReason.toString();
+        var itemStopReason = "Stop Reason: " + stringify(item.stopReason);
 
         var objectA = { name: itemName, status: itemStatus, onset: itemOnset, stopDate: itemStopDate, stopReason: itemStopReason };
 
@@ -328,7 +351,7 @@ function getCurrentRecordStore() {
 function startApp() {
     g_hvApp.startAsync().then(
         function () {
-            //displayUser();
+            renderUserInfo();
 
             if (g_hvApp.isAuthorizedOnServerAsync()) {
                 getAllergy();
@@ -1426,7 +1449,23 @@ function testGetThingTypes() {
         });
 }
 
+//userInfo is different because is it provided upon startup
+function renderUserInfo() {
+    var info = g_hvApp.userInfo;
+
+    if (!g_hvApp.userInfo) {
+        document.getElementById("username").innerText("Not Logged In");
+    }
+
+    else {
+        var name = String(info.name);
+        document.getElementById("username").textContent = name;
+    }
+
+}
+
 //functions to get information upon startup
+
 function getAllergy() {
     testQuery(HealthVault.ItemTypes.Allergy.queryFor());
 }
