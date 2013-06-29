@@ -27,10 +27,10 @@
         </header>
     <div id="container">
         <div id="middle" class="column">
-            <div class="heading">Allergy</div>
+            <div class="heading">Allergies</div>
             ---
             <div id="allergytemplate" data-win-control="WinJS.Binding.Template">
-                    <div style="height:20%">
+                    <div style="height:33%">
                          <h4 data-win-bind="innerText: name"></h4>
                          <h6 data-win-bind="innerText: reaction"></h6>
                          <h6 data-win-bind="innerText: date"></h6>
@@ -42,11 +42,11 @@
                     data-win-options="{ itemDataSource : AllergyInfo.itemList.dataSource, itemTemplate: select('#allergytemplate'), layout: {type: WinJS.UI.ListLayout} }">
 
                 </div>
-            
+            <br />
             <div class="heading">Medications</div>
             ---
             <div id="medicationTemplate" data-win-control="WinJS.Binding.Template">
-                    <div style="height:20%">
+                    <div style="height:33%">
                          <h4 data-win-bind="innerText: name"></h4>
                          <h6 data-win-bind="innerText: dose"></h6>
                          <h6 data-win-bind="innerText: strength"></h6>
@@ -58,6 +58,7 @@
                     data-win-control="WinJS.UI.ListView"
                     data-win-options="{ itemDataSource : MedicationInfo.itemList.dataSource, itemTemplate: select('#medicationTemplate'), layout: {type: WinJS.UI.ListLayout} }">
                 </div>
+            <br />
             <div class="heading">Conditions</div>
             ---
             <div id="conditionsTemplate" data-win-control="WinJS.Binding.Template">

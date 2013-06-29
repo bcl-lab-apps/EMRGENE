@@ -45,13 +45,13 @@
 }
 
 #allergyListView {
-    height: 150px;
+    height: 180px;
 }
 
 #medicationListView {
-    height:150px;
+    height:180px;
 }
 
-#conditionsListView {
-    height:150px;
+#conditionListView {
+    height:180px;
 }

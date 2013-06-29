@@ -353,17 +353,21 @@ function startApp() {
         function () {
             renderUserInfo();
 
-            if (g_hvApp.isAuthorizedOnServerAsync()) {
-                getAllergy();
-                getBloodPressure();
-                getCholestrol();
-                getCondition();
-                getMedication();
-                getWeight();
-            };
-            //console.log(DataHeaders.itemList.getItem(0).data.name);
-            //console.log(DataHeaders.itemList.getItem(0).key);
-            //DataHeaders.itemList.getItem(0).data.info = "boo";
+            //the reconfirmation of authentication is for when the user is not logged in
+            g_hvApp.isAuthorizedOnServerAsync().then(function (result) {
+
+                if (result) {
+                    if (g_hvApp.userInfo) {
+                        getAllergy();
+                        getBloodPressure();
+                        getCholestrol();
+                        getCondition();
+                        getMedication();
+                        getWeight();
+                    }
+                }
+
+            });
 
         },
         displayError,
@@ -371,8 +375,8 @@ function startApp() {
 }
 
 function restartApp() {
-    g_hvApp.resetAsync();
-    startApp();
+    g_hvApp.resetAsync().then(startApp());
+    //startApp();
 }
 
 function authMore() {
@@ -1076,13 +1080,17 @@ function testQuery(query, fullItem) {
 
     var record = getCurrentRecord();
 
-    record.getAsync(query).then(
-        function (itemList) {
-            validateAndDisplayList(itemList, fullItem);
-        },
-        displayError,
-        null
-    );
+    if (record) {
+        record.getAsync(query).then(
+       function (itemList) {
+           validateAndDisplayList(itemList, fullItem);
+       },
+       displayError,
+       null
+        );
+    }
+
+   
 
 
 }
@@ -1454,7 +1462,7 @@ function renderUserInfo() {
     var info = g_hvApp.userInfo;
 
     if (!g_hvApp.userInfo) {
-        document.getElementById("username").innerText("Not Logged In");
+        document.getElementById("username").textContent = "Not Logged In";
     }
 
     else {
