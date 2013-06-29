@@ -348,10 +348,31 @@ function getCurrentRecordStore() {
     return g_hvApp.localVault.recordStores.getStoreForRecord(getCurrentRecord());
 }
 
+
+function clearLists() {
+    AllergyInfo.itemList.forEach(function (value, index, array) {
+        AllergyInfo.itemList.pop();
+    });
+    
+    LatestInfo.itemList.forEach(function (value, index, array) {
+        LatestInfo.itemList.pop();
+    });
+
+    MedicationInfo.itemList.forEach(function (value, index, array) {
+        MedicationInfo.itemList.pop();
+    });
+
+    ConditionInfo.itemList.forEach(function (value, index, array) {
+        ConditionInfo.itemList.pop();
+    });
+};
+
 function startApp() {
     g_hvApp.startAsync().then(
         function () {
             renderUserInfo();
+            //clears the list
+            clearLists();
 
             //the reconfirmation of authentication is for when the user is not logged in
             g_hvApp.isAuthorizedOnServerAsync().then(function (result) {
