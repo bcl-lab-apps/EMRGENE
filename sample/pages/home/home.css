@@ -55,3 +55,9 @@
 #conditionListView {
     height:180px;
 }
+
+#usernameListView {
+    height:35px;
+}
+
+body {background-color:#FCE3B9;}

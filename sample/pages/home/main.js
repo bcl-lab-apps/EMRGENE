@@ -334,7 +334,7 @@ startApp();
 
 function createHealthVaultApp() {
     var app = new HealthVault.Foundation.HealthVaultApp(new HealthVault.Foundation.HealthVaultAppSettings("04bd13fd-875c-41e3-bd11-4cae8c88cf37"));
-    app.appInfo.instanceName = "EMRGENE";
+    app.appInfo.instanceName = "DB EMR";
     app.debugMode = true;
 
     return app;
@@ -379,7 +379,6 @@ function startApp() {
 
                 if (result) {
                     if (g_hvApp.userInfo) {
-                        console.log(document.getElementById("loginbutton"));
                         document.getElementById("loginbutton").innerHTML = "Logout";
                         getAllergy();
                         getBloodPressure();
@@ -1483,13 +1482,16 @@ function testGetThingTypes() {
 function renderUserInfo() {
     var info = g_hvApp.userInfo;
 
+    UsernameInfo.itemList.pop();
+
     if (!g_hvApp.userInfo) {
-        document.getElementById("username").textContent = "Not Logged In";
+        var noname = {name: "Not Logged In"};
+        UsernameInfo.itemList.push(noname);
     }
 
     else {
-        var name = String(info.name);
-        document.getElementById("username").textContent = name;
+        var username = { name: String(info.name) };
+        UsernameInfo.itemList.push(username);
     }
 
 }

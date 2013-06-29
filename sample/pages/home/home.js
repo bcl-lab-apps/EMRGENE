@@ -20,7 +20,9 @@
     var condition = [];
     var familyHistory = [];
 
-     var latestInfo = [];
+    var latestInfo = [];
+
+    var usernameInfo = [];
 
     //Lastest Information such as BP and Cholestrol
     var dataList = new WinJS.Binding.List(latestInfo);
@@ -60,15 +62,15 @@
 
     WinJS.Namespace.define("ConditionInfo", conditionPM);
 
-    //Family History
-    var fhList = new WinJS.Binding.List(familyHistory);
+    //UserName
+    var unList = new WinJS.Binding.List(usernameInfo);
 
-    var fhPM =
+    var unPM =
         {
-            itemList: fhList
+            itemList: unList
         };
 
-    WinJS.Namespace.define("FHInfo", fhPM);
+    WinJS.Namespace.define("UsernameInfo", unPM);
 
 })();
 

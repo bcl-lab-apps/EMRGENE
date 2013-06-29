@@ -78,7 +78,16 @@
             </div>
         <div id="left" class="column">
                 <div class="heading">Name</div>
-                <div class="heading" id="username"></div>
+                <div id="usernameTemplate" data-win-control="WinJS.Binding.Template">
+                    <div>
+                         <h6 data-win-bind="innerText: name"></h6>
+                    </div>
+               </div>   
+
+                <div id="usernameListView"
+                    data-win-control="WinJS.UI.ListView"
+                    data-win-options="{ itemDataSource : UsernameInfo.itemList.dataSource, itemTemplate: select('#usernameTemplate'), layout: {type: WinJS.UI.ListLayout} }">
+                </div>
                 <br />
                 <div class="heading">Latest Measurements</div>
                 ---
@@ -109,11 +118,10 @@
             <button onclick="restartApp();" id="loginbutton">Login</button>
             <button onclick="startApp();" id="logoutbutton">Get Info</button>
 
-
-            <div class="heading">23AndMe</div>
-                ---
-            <div class="heading">Telcare</div>
-                ---
+            <br />
+            <br />
+            <div>23AndMe</div>
+            <div>Telcare</div>
 
         </div>
     </div>
