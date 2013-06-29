@@ -379,6 +379,8 @@ function startApp() {
 
                 if (result) {
                     if (g_hvApp.userInfo) {
+                        console.log(document.getElementById("loginbutton"));
+                        document.getElementById("loginbutton").innerHTML = "Logout";
                         getAllergy();
                         getBloodPressure();
                         getCholestrol();
@@ -397,7 +399,7 @@ function startApp() {
 
 function restartApp() {
     g_hvApp.resetAsync().then(startApp());
-    //startApp();
+    document.getElementById("loginbutton").innerHTML = "Login";
 }
 
 function authMore() {
@@ -506,7 +508,6 @@ function testCondition() {
 
 function testItemQuery() {
 
-    //var strings = new HealthVault.Collections.StringCollection();
     var query = new HealthVault.Types.ItemQuery();
     query.name = "Foo";
     query.view.typeVersions.append("33");
