@@ -78,6 +78,7 @@
             </div>
         <div id="left" class="column">
                 <div class="heading">Name</div>
+                ---
                 <div id="usernameTemplate" data-win-control="WinJS.Binding.Template">
                     <div>
                          <h6 data-win-bind="innerText: name"></h6>
@@ -110,6 +111,11 @@
         </div>
         
         <div id="right" class="column">
+            <img id="bear" src="/bearhappy/happybear0.png" style="width:300px" />
+            <textarea id="bearsays">Mr. Bear Says: You're not logged in. </textarea>
+            <br />
+            <br />
+            <br />
             Step 1: Login
             <br />
             Step 2: Get Info
@@ -120,10 +126,24 @@
 
             <br />
             <br />
-            <div>23AndMe</div>
-            <div>Telcare</div>
+            <div class="heading">23AndMe</div>
+            ---
+            <br />
+            <button onclick="renderSNP();" id="snpbutton">SNPs</button>
+            <br />
+            <img id="snpimage" style=""width:300px"/>
+            <br />
+            <br />
+            <div class="heading">Telcare</div>
+            ---
+            <br />
+            <button onclick="renderTelcare();" id="telcarebutton">Glucose Reading</button>
+            <br />
+            <img id="telcareimg" style="width:300px" />
+            <br />
+            
 
-        </div>
+        </>
     </div>
     <div id="footer"></div>
 </body>

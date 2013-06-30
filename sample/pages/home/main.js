@@ -29,12 +29,17 @@ function displayList(items, fullItem) {
 
 }
 
+//function renderNone() {
+//    LatestInfo.itemList.push({ name: "None" });
+//}
+
 //bad construction, needs better design/modular design
 //would be better to pass in function callback with the appropriate renders, this is to save time temporarily
 function renderItemList(itemList, fullItem) {
 
     //empty item list
     if (itemList.length == 0) {
+        //renderNone();
         return null;
     }
 
@@ -136,6 +141,9 @@ function renderBP(item) {
     var object = { name: bp, date: when, info1: itemInfo, info2: itemInfo2, info3: itemInfo3, info4: itemInfo4 };
     LatestInfo.itemList.push(object);
 }
+
+
+
 
 function renderAllergy(itemList) {
 
@@ -365,12 +373,15 @@ function clearLists() {
     ConditionInfo.itemList.forEach(function (value, index, array) {
         ConditionInfo.itemList.pop();
     });
+
+    UsernameInfo.itemList.forEach(function (value, index, array) {
+        UsernameInfo.itemList.pop();
+    });
 };
 
 function startApp() {
     g_hvApp.startAsync().then(
         function () {
-            renderUserInfo();
             //clears the list
             clearLists();
 
@@ -380,21 +391,57 @@ function startApp() {
                 if (result) {
                     if (g_hvApp.userInfo) {
                         document.getElementById("loginbutton").innerHTML = "Logout";
+
                         getAllergy();
                         getBloodPressure();
                         getCholestrol();
                         getCondition();
                         getMedication();
                         getWeight();
+
+                        renderUserInfo();
+
                     }
                 }
 
             });
+            renderBear();
+
 
         },
         displayError,
         null);
 }
+
+//should move into another place for better organization
+function renderBear() {
+
+    //code for bear rendering
+    var renderBear = 0
+    var counter = 0
+
+    renderBear = setInterval(
+    function () {
+
+        counter += 1;
+        var happy = true;
+
+        if (g_hvApp.userInfo) {
+            var dir = "/bearhappy/happybear" + (counter % 5) + ".png";
+            document.getElementById("bear").src = dir;
+            document.getElementById("bearsays").innerHTML = "Mr. Bear says: Everything is A-Ok.";
+        }
+        else {
+            var dir = "/bearsad/sadbear1" + (counter % 4) + ".png";
+            document.getElementById("bear").src = dir;
+            document.getElementById("bearsays").innerHTML = "Mr. Bear says: You're not logged in.";
+        }
+    },
+    1000 / 2
+    );
+}
+
+
 
 function restartApp() {
     g_hvApp.resetAsync().then(startApp());
@@ -1093,7 +1140,7 @@ function testQuery(query, fullItem) {
 
     //query.filters[0].updatedDateMin = new HealthVault.Types.DateTime("8/17/2012");
 
-    displayText(query.serialize());
+    //displayText(query.serialize());
     //var xml = query.serialize();
     //var recordItem = HealthVault.Types.RecordItem.deserialize(xml);
 
@@ -1485,8 +1532,7 @@ function renderUserInfo() {
     UsernameInfo.itemList.pop();
 
     if (!g_hvApp.userInfo) {
-        var noname = {name: "Not Logged In"};
-        UsernameInfo.itemList.push(noname);
+        return null;
     }
 
     else {
